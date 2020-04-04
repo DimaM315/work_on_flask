@@ -1,0 +1,82 @@
+body{
+	padding: 20px 150px 0px 40px;
+	background-color: rgba(0,0,0, .1);
+}
+
+#welcome_text{
+	font-size: 1.4em;
+	font-family: Tahoma;
+	margin:100px 23%;
+}
+
+#log_wrap{
+	display: flex;
+	justify-content: space-around;
+	padding: 0px 200px;
+}
+
+
+
+#form_auto{
+	left:20%;
+}
+
+#form_reg{
+	left:50%;
+}
+
+
+.form{
+	transform: rotateY(90deg);
+	transition: transform ease 1s;
+	top:340px;
+	z-index: 2;
+	position:absolute;
+	width: 290px;
+	border-radius: 5px;
+	padding: 10px;
+	background-color: rgba(128,128,128,1);
+	color:white;
+	font-family: sans-serif;
+}
+.input{
+	padding: 5px;
+	border-radius: 5px;
+	width: 90%;
+	margin-top: 4px;
+	margin-bottom: 7px;
+}
+.btn{
+	display: inline-block;
+	padding: 10px;
+	font-family: monospace;
+	font-size: 1.5em;
+	font-weight: bold;
+	color: white;
+	border-radius: 5px;
+	cursor: pointer;
+	border:.5px solid #4C5CF4;
+	background-color: #4C8BF4;
+}
+.error{
+	color:red;
+	font-size: .8em;
+}
+
+@keyframes login{
+	0%{
+		transform:rotateY(90deg)
+	}
+	25%{
+		transform:rotateY(68deg)
+	}
+	50%{
+		transform:rotateY(45deg)
+	}
+	75%{
+		transform:rotateY(23deg)
+	}
+	100%{
+		transform:rotateY(0deg)
+	}
+}
