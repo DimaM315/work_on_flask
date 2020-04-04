@@ -1,0 +1,32 @@
+{% extends 'base.html'%}
+
+{% block title %}
+	{{post_title}} - post
+{% endblock %}
+
+{%block url_static_css%}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/postPageStyle.css')}}">
+{%endblock%}
+
+{%block url_static_js%}
+<script type="text/javascript" src="{{ url_for('static', filename='js/postPageScript.js')}}" defer></script>
+{%endblock%}
+
+{% block content %}
+	{%if auto: %}
+		<div id="header">
+			<div id="my_work" class="section"><a href="\?myWork=true">Мой работы</a></div>
+			<div id="hover_el" class="section"><a href="\?">Мой логин: {{login}}</a></div>
+		</div>
+	{%endif%}
+	
+	<div id="feed">
+		<h2>{{post_title}}</h2>	
+		<div class="article">{{text}}</div>
+		<strong>Автор:</strong> <a href="{{url_for('user_page', id=author_id)}}"><em>{{author}}</em></a> 
+		{%if auto: %}
+			<button class="btn">Нравиться</button>	
+		{%endif%}
+	</div>
+
+{%endblock%}

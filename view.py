@@ -1,7 +1,5 @@
-from app import app, db
+from app import app
 from flask import render_template, url_for, request, redirect
-from models import user_datastore
-
 
 def validation_data(args):
 	for i in args:
@@ -21,8 +19,7 @@ def auto():
 		name = request.form['name']
 		surname = request.form['surname']
 		if validation_data([login, password, name, surname]):
-			user_datastore.create_user(login=login, password=password,
-									   name=name, surname=surname)
+			pass
 	else:
 		login = request.args.get('name', 1)
 		password = request.args.get('password', 1)
@@ -30,3 +27,34 @@ def auto():
 			pass
 			
 	return 'autorithation'
+
+@app.route('/bs/<id>', methods=['GET', 'POST'])
+def user_page(id):
+	if id == '1':
+		return render_template('user_page.html', auto=True, check_yourPage=True,
+		 contacts=[], articles=[{'id':'1','title':'Emplementation'}], login='vovcha315',
+		 FI='Vladimir Eginga', )
+	else:
+		return render_template('404.html')
+
+@app.route('/myWork')
+def my_work():
+	auto = True
+	login = 'vovcha315'
+	text = 'hello world'
+	FI = 'Vladimir Eginga'
+	title = 'My first post'
+	return render_template('my_work_page.html', auto=auto,
+	 login=login, text=text, FI=FI, title=title)
+
+@app.route('/post-page/<id>', methods=['GET'])
+def post_page(id):
+	if id == '1':
+		auto = True
+		login = 'vovcha315'
+		text = 'hello world, some text some text'
+		post_title = 'My first post'
+		author_id = 1
+		author = login
+		return render_template('postPage.html', auto=auto,
+	 login=login, text=text, author=author, author_id=author_id, post_title=post_title)

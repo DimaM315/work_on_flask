@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{% block title %}
+				
+	{% endblock %}</title>
+
+	{%block  url_static_css%}{%endblock%}
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js" ></script>
+	
+	{%block  url_static_js%}{%endblock%}
+
+</head>
+<body>
+{% block content %}
+	
+{% endblock %}
+</body>
+</html>

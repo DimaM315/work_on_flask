@@ -1,0 +1,99 @@
+*{
+	margin:0px;
+	padding:0px;
+	overflow-x: hidden;
+}
+body{
+	background-color: rgba(0,0,0, .1);
+}
+a{
+	text-decoration:none; 
+	display: contents;
+	color: white;
+}
+.a_post{
+	color:black;
+}
+
+
+#header{
+	height: 50px;
+	width: 100%;
+	padding: 10px 30px;
+	border:2px solid black;
+	position: fixed;
+	background-color: gray;
+	color: white;
+	font-family: Arial;
+	font-size: 1.1em;
+}
+
+#hover_el{	
+	margin-left: 13px;
+	margin-right: 30px;
+	box-shadow: 40px 4px 28px rgba(76,109,148,0.65), 0 10px 10px rgba(0,0,0,0.22);
+}
+#my_work{
+	box-shadow: 0 14px 28px rgba(0,0,0,0.15), 0 10px 10px rgba(0,0,0,0.22);
+}
+.section{
+	margin-top: 3px; 
+	display: inline-block;
+	padding: 10px;
+	border-radius: 20px;
+	background-color: #4C6D94;
+	cursor: pointer;
+}
+.section:hover{
+	background-color: #4C6DC7;
+}
+
+
+
+
+
+#feed{
+	margin:90px 20% 30px 20%;
+	padding: 5px 5px 0px 5px;
+	background-color: white;
+	box-shadow: 0 14px 5px white; 
+}
+
+#feed h2{
+	font-family: cursive;
+}
+#feed button{
+	float:right;
+}
+#feed a{
+	color: black;
+}
+
+
+
+
+
+
+
+.article{
+	padding: 15px;
+	font-size: 1.1em;
+	max-height: 430px;
+	margin-bottom: 10px;
+}
+.article button{
+	float:right;
+	font-size: .7em;
+}
+
+.btn{
+	display: inline-block;
+	padding: 10px;
+	font-family: Arial;
+	font-size: 1.0em;
+	font-weight: bold;
+	color: white;
+	cursor: pointer;
+	border:.5px solid #4C5CF4;
+	background-color: #4C8BF4;
+}

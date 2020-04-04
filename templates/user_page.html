@@ -1,0 +1,63 @@
+{% extends 'base.html'%}
+
+{% block title %}
+	{{ FI }}
+{% endblock %}
+
+{%block url_static_css%}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/userStyle.css')}}">
+{%endblock%}
+
+{%block url_static_js%}
+<script type="text/javascript" src="{{ url_for('static', filename='js/userPageScripts.js')}}" defer></script>
+{%endblock%}
+
+{% block content %}
+	{%if auto: %}
+		<div id="header">
+			<div id="my_work" class="section"><a href="{{url_for('my_work')}}">Мой работы</a></div>
+			<div id="hover_el" class="section"><a href="\?">Мой логин: {{login}}</a></div>
+		</div>
+	{%endif%}
+
+	<div id="feed">
+		<h2>{{FI}} ({{login}})</h2>		
+	</div>
+
+	{% if auto: %}
+		<div id="share_btn">
+			{% if check_yourPage:%}
+				<button class="btn yourPage">Ваш профиль</button>
+			{%elif not check_friend:%}
+				<button class="btn" id="addCont">Добавить в контакты</button>
+			{%else:%}
+				<button class="btn friend">Убрать из контактов</button>
+			{%endif%}
+
+			<button class="btn">Написать сообщение</button>
+		</div>
+	{% endif %}
+
+
+	<div id="sub_contact">
+		<h2>Контакты</h2>
+		{% for contact in contacts: %}			
+			<div class="contact">
+				<div class="shape"></div> 
+				<div class="contact_name">
+					<a href="index.php?userID={{contact['id']}}">{{contact['FI']}}</a>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+
+	<div id="user_works">
+		<h2>Статьи пользователя</h2>
+		{% for article in articles: %}
+			<div class="article">
+				<a href="?articleID={{article['id']}}">{{article['title']}}</a> <button class="btn">Нравиться</button>
+			</div>
+		{% endfor %}
+	</div>
+
+{% endblock %}
