@@ -45,7 +45,7 @@
 			<div class="contact">
 				<div class="shape"></div> 
 				<div class="contact_name">
-					<a href="index.php?userID={{contact['id']}}">{{contact['FI']}}</a>
+					<a href="{{url_for('user_page', id=contact['id'])}}">{{contact['FI']}}</a>
 				</div>
 			</div>
 		{% endfor %}
@@ -55,7 +55,7 @@
 		<h2>Статьи пользователя</h2>
 		{% for article in articles: %}
 			<div class="article">
-				<a href="?articleID={{article['id']}}">{{article['title']}}</a> <button class="btn">Нравиться</button>
+				<a href="{{url_for('post_page', id=article['id'])}}">{{article['title']}}</a> <button class="btn">Нравиться</button>
 			</div>
 		{% endfor %}
 	</div>

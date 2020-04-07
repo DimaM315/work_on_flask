@@ -13,21 +13,20 @@
 {%endblock%}
 
 {% block content %}
-	{%if auto: %}
 		<div id="header">
 			<div id="my_work" class="section"><a href="\?myWork=true">Мой работы</a></div>
 			<div id="hover_el" class="section"><a href="\?">Мой логин: {{login}}</a></div>
 		</div>
-	{%endif%}
 
 	<div id="feed">
-			<input type="text" id="title" class="input" value="{{title}}"><span class="error" id="error_title">Название не длиннее 45 символов!</span><br><br>
-			<textarea id="text">{{text}}</textarea><span class="error" id="error_text">Текст не короче 100 символов!</span>
+		<form method="GET" action="{{url_for('post_create')}}">
+			<input type="text" id="title" class="input" name="title" value="{{title}}"><span class="error" id="error_title">Название не длиннее 45 символов!</span><br><br>
+			<textarea id="text" name="text">{{text}}</textarea><span class="error" id="error_text">Текст не короче 100 символов!</span>
 
 		<hr><em>Автор: {{login}}</em>
-		<button class="btn" id="done">Опубликовать</button>
+		<button class="btn" type="submit" id="done">Опубликовать</button>
 		<button class="btn" id="save">Сохранить</button>
-
+		</form>
 	</div>
 
 {%endblock%}
