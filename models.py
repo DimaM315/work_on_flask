@@ -7,7 +7,7 @@ from flask import session
 
 def validation_data(args):
 	for i in args:
-		if len(i) == 0:
+		if len(i) < 3:
 			return False
 	return True
 
@@ -21,7 +21,7 @@ def is_auth():
 	if l == False or p == False:
 		return False
 	u = User.query.filter(User.login==l).first()
-	return [u.password == p, u.id]
+	return u.password == p
 
 
 
@@ -38,9 +38,15 @@ class User(db.Model):
 	name = db.Column(db.String(255))
 	surname = db.Column(db.String(255))
 
+	contacts = db.Column(db.String(255))
+
 	active = db.Column(db.Boolean())
 	roles = db.relationship('Role', secondary=role_users,
 						backref=db.backref('user', lazy='dynamic'))
+
+	def __init__(self):
+		super(Post, self).__init__(*args, **kwags)
+		contacts = ''
 	
 	
 class Role(db.Model):
@@ -59,6 +65,7 @@ class Post(db.Model):
 	title = db.Column(db.String(140), unique=True)
 	text = db.Column(db.Text)
 	author = db.Column(db.String(140))
+	likes = db.Column(db.Integer())
 	tag = db.relationship('Tag', secondary=post_tag, 
 							backref=db.backref('posts', lazy='dynamic'))
 	slug = db.Column(db.String(140), unique=True)

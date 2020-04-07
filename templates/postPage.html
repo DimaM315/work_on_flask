@@ -23,7 +23,7 @@
 	<div id="feed">
 		<h2>{{post_title}}</h2>	
 		<div class="article">{{text}}</div>
-		<strong>Автор:</strong> <a href="{{url_for('user_page', id=author_id)}}"><em>{{author}}</em></a> 
+		<strong>Автор:</strong> <a href="{{url_for('user_page', nickname_or_id=author_id)}}"><em>{{author}}</em></a> 
 		{%if auto: %}
 			<button class="btn">Нравиться</button>	
 		{%endif%}

@@ -1,7 +1,7 @@
 {% extends 'base.html'%}
 
 {% block title %}
-	{{ FI }}
+	{{ FI }} - BS
 {% endblock %}
 
 {%block url_static_css%}
@@ -29,9 +29,9 @@
 			{% if check_yourPage:%}
 				<button class="btn yourPage">Ваш профиль</button>
 			{%elif not check_friend:%}
-				<button class="btn" id="addCont">Добавить в контакты</button>
+				<button class="btn" id="addCont"><a href="{{url_for('manipulate_contacts', action='add', login=login)}}">Добавить в контакты</a></button>
 			{%else:%}
-				<button class="btn friend">Убрать из контактов</button>
+				<button class="btn friend"><a href="{{url_for('manipulate_contacts', action='delete', login=login)}}">Убрать из контактов</a></button>
 			{%endif%}
 
 			<button class="btn">Написать сообщение</button>
@@ -45,7 +45,7 @@
 			<div class="contact">
 				<div class="shape"></div> 
 				<div class="contact_name">
-					<a href="{{url_for('user_page', id=contact['id'])}}">{{contact['FI']}}</a>
+					<a href="{{url_for('user_page', nickname_or_id=contact['nickname'])}}">{{contact['FI']}}</a>
 				</div>
 			</div>
 		{% endfor %}
