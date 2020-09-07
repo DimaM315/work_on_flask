@@ -45,6 +45,12 @@ textarea{
 	box-shadow: 0 14px 28px rgba(0,0,0,0.15), 0 10px 10px rgba(0,0,0,0.22);
 }
 
+#exit{
+	background-color: rgba(150,0,0,.8);
+	margin-left: 45%;
+	width: 50px;
+	text-align: center;
+}
 
 .section{
 	margin-top: 3px; 

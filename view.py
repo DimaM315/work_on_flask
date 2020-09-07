@@ -45,10 +45,10 @@ def user_page(nickname_or_id):
 			u = User.query.filter(User.login==nickname_or_id).first()
 			break
 	else:
-		u = User.query.filter(User.id==nickname_or_id).first()
+		u = User.query.filter(User.id==nickname_or_id).first() or None
+		if u == None:
+			return render_template('404.html')
 	
-	if u == None:
-		return render_template('404.html')
 	
 	auto = is_auth()
 	check_friend = False
@@ -79,8 +79,8 @@ def user_page(nickname_or_id):
 
 @app.route('/add_contact', methods=['GET'])
 def manipulate_contacts(login='', action=''):
-	login = request.args.get('login','')
-	action = request.args.get('action','')
+	login = request.args.get('login', '')
+	action = request.args.get('action', '')
 	if is_auth():
 		u = User.query.filter(User.login==session['login']).first()
 		if action == 'add':

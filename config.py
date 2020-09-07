@@ -7,4 +7,3 @@ class  Configuration(object):
 	#flack sequrity
 	SECURITY_PASSWORD_SALT = 'sault'
 	SECURITY_PASSWORD_HASH = 'sha512_crypt'
-		

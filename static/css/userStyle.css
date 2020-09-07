@@ -15,6 +15,12 @@ a{
 	color:black;
 }
 
+#exit{
+	background-color: rgba(150,0,0,.8);
+	margin-left: 45%;
+	width: 50px;
+	text-align: center;
+}
 
 #header{
 	height: 50px;
