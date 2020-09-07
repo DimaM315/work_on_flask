@@ -28,24 +28,22 @@ class UserController(BaseController):
         if u == None:
             render_template('404.html')
 
-        contacts = self.get_user_contacts(u)
-        auto = is_auth()
-        check_yourPage = u.password == session['password']
-        check_friend = False
-        if auto and not check_yourPage:
+        page_data = {'auto': is_auth(),
+                     'check_yourPage': u.password == session['password'],
+                     'check_friend': False,
+                     'contacts': self.get_user_contacts(u),
+                     'login': '{} {}'.format(u.name, u.surname),
+                     'articles': []
+        }
+        if page_data['auto'] and not page_data['check_yourPage']:
             # when the user went to another user`s page
             my = User.query.filter(User.login == session['login']).first()
-            check_friend = u.login in my.contacts.split('/#/')
+            page_data['check_friend'] = u.login in my.contacts.split('/#/')
 
-        articles = Post.query.filter(Post.author == u.login).all()
+        articles_data = Post.query.filter(Post.author == u.login).all()
+        page_data['articles'] = [{'id': a.id, 'title': a.title} for a in articles_data]
 
-        return render_template('user_page.html',
-                               auto=auto,
-                               check_yourPage=check_yourPage,
-                               check_friend=check_friend,
-                               contacts=contacts,
-                               articles=[{'id': a.id, 'title': a.title} for a in articles],
-                               login=u.login, FI=u.name + ' ' + u.surname)
+        return render_template('user_page.html', **page_data)
 
     def get_user_contacts(self, user):
         contacts = []
