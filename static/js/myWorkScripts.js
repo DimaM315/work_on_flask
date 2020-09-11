@@ -21,40 +21,18 @@ $('#done').on('click', function(){
 	var title = document.getElementById('title').value; 
 	var text = document.getElementById('text').value;
 
-	/*$.ajax({
-		url:'articles.php',
-		type:'GET',
-		data:{
-			title: title,
-			text: text
-		},
-		success:function(response, status){
-			if(response > 0){ // ответ - '2' - положительный, текст - отрицательный
-				window.location.href = "http://bs";
-			}else{
-				alert(response);
-			};
-		}
-	})*/
+	/*var xhr = new XMLHttpRequest();
+	xhr.open('POST', '/create_post', false)
+	xhr.send([title, text]);
+	
+	console.log(xhr.status)*/
 });
 
 $('#save').on('click', function(){
 	var title = document.getElementById('title').value; 
 	var text = document.getElementById('text').value;
 
-	/*$.ajax({
-		url:'articles.php',
-		type:'GET',
-		data:{
-			save: 1,
-			work: title+'-!!!-'+text
-		},
-		success:function(response, status){
-			if(response === 'save'){ // ответ - 'save' - положительный, другое - отрицательный
-				window.location.href = "http://bs";
-			}else{
-				alert(response);
-			};
-		}
-	})*/
+	var xhr = new XMLHttpRequest();
+	xhr.open('POST', '/article/save', true)
+	xhr.send([title, text]);
 });

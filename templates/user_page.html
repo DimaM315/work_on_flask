@@ -22,17 +22,17 @@
 	{%endif%}
 
 	<div id="feed">
-		<h2>{{FI}} ({{login}})</h2>		
+		<h2>{{FI}}</h2>
 	</div>
 
 	{% if auto: %}
 		<div id="share_btn">
 			{% if check_yourPage:%}
 				<button class="btn yourPage">Ваш профиль</button>
-			{%elif not check_friend:%}
-				<button class="btn" id="addCont"><a href="{{url_for('manipulate_contacts', action='add', login=login)}}">Добавить в контакты</a></button>
+			{%elif not in_friends:%}
+				<button class="btn" id="addCont"><a href="{{url_for('manipulate_contacts', action='add', who=own)}}">Добавить в контакты</a></button>
 			{%else:%}
-				<button class="btn friend"><a href="{{url_for('manipulate_contacts', action='delete', login=login)}}">Убрать из контактов</a></button>
+				<button class="btn friend"><a href="{{url_for('manipulate_contacts', action='delete', who=login)}}">Убрать из контактов</a></button>
 			{%endif%}
 
 			<button class="btn">Написать сообщение</button>

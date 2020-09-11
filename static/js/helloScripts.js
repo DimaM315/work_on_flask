@@ -14,36 +14,20 @@ $('#enter').on('click', function(){
 	var pass = document.getElementById('auto_pass').value; 
 	var nick = document.getElementById('auto_login').value;
 
-	$.ajax({
-		url:'enter.php',
-		type:'GET',
-		data:{
-			nick: nick,
-			pass: pass
-		},
-		success:function(response, status){
-			if(response > 0){ // ответ - id пользователя, либо строка
-				window.location.href = "http://bs";
-			}else{
-				alert(response);
-			};
-		}
-	})
 });
 
 $('#reg_order').on('click', function(){
-	var pass = document.getElementById('reg_pass').value; 
+	/*var pass = document.getElementById('reg_pass').value; 
 	var nick = document.getElementById('reg_login').value;
 	var name = document.getElementById('reg_name').value;
 	var surname = document.getElementById('reg_surname').value;
 
 	$.ajax({
-		url:'enter.php',
-		type:'GET',
+		url:'/auto',
+		type:'POST',
 		data:{
-			reg:'reg',
-			nick: nick,
-			pass: pass,
+			login: nick,
+			password: pass,
 			name: name,
 			surname: surname
 		},
@@ -54,7 +38,7 @@ $('#reg_order').on('click', function(){
 				alert(response+1);
 			};
 		}
-	})
+	})*/
 	$('#form_auto').css('transform','rotateY(0deg)');
 	$('#form_reg').css('transform','rotateY(90deg)');
 })

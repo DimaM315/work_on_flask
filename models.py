@@ -1,93 +1,47 @@
-from app import db
-# from flask_security import SQLAlchemyUserDatastore, Security, current_user
-# from flask_security import UserMixin, RoleMixin
-import re
+from peewee import (Model, IntegerField, DoubleField, CharField, BooleanField,
+                    PrimaryKeyField, TextField, 
+                    DateTimeField, datetime as peewee_datetime,)
 from flask import session
+from app import db_peewee
+import re
 
 
-def validation_data(args):
-    for i in args:
-        if len(i) < 3:
-            return False
-    return True
+class _Model(Model):
+	class Meta:
+		database = db_peewee
 
 
-def slugify(title):
-    pattern = r'[^\w+]'
-    return re.sub(pattern, '-', title)
+class Articles(_Model):
+	class Meta:
+		db_table = 'articles'
 
 
-def is_auth():
-    login = session.get('login', False)
-    password = session.get('password', False)
-    if login == False or password == False:
-        return False
-    u = User.query.filter(User.login == login).first()
-    return u.password == password
+class User(_Model):
+    class Meta:
+        db_table = 'users'
 
+    id = PrimaryKeyField(null=False)
+    login = CharField(max_length=140, index=True)
+    password = CharField(max_length=25)
 
-role_users = db.Table('role_users',
-                      db.Column('user_id', db.Integer(), db.ForeignKey('user.id')),
-                      db.Column('role_id', db.Integer(), db.ForeignKey('role.id')),
-                      )
+    name = CharField(max_length=35, null=False)
+    surname = CharField(max_length=35, null=False)
 
+    contacts = TextField(null=True)
 
-class User(db.Model):
-    id = db.Column(db.Integer(), primary_key=True)
-    login = db.Column(db.String(140), unique=True)
-    password = db.Column(db.String(255))
+    active = BooleanField(default=True)
+    #roles = db.relationship('Role', secondary=role_users,
+                           # backref=db.backref('user', lazy='dynamic'))
 
-    name = db.Column(db.String(255))
-    surname = db.Column(db.String(255))
+class Post(_Model):
+    class Meta:
+        db_table = 'posts'
 
-    contacts = db.Column(db.String(255))
-
-    active = db.Column(db.Boolean())
-    roles = db.relationship('Role', secondary=role_users,
-                            backref=db.backref('user', lazy='dynamic'))
-
-    def __init__(self):
-        super(Post, self).__init__(*args, **kwags)
-        contacts = ''
-
-
-class Role(db.Model):
-    id = db.Column(db.Integer(), primary_key=True)
-    name = db.Column(db.String(140), unique=True)
-    discription = db.Column(db.String(255))
-
-
-post_tag = db.Table('post_tags',
-                    db.Column('post_id', db.Integer, db.ForeignKey('post.id')),
-                    db.Column('tag_id', db.Integer, db.ForeignKey('tag.id'))
-                    )
-
-
-class Post(db.Model):
-    id = db.Column(db.Integer(), primary_key=True)
-    title = db.Column(db.String(140), unique=True)
-    text = db.Column(db.Text)
-    author = db.Column(db.String(140))
-    likes = db.Column(db.Integer())
-    tag = db.relationship('Tag', secondary=post_tag,
-                          backref=db.backref('posts', lazy='dynamic'))
-    slug = db.Column(db.String(140), unique=True)
-
-    def __init__(self, *args, **kwags):
-        super(Post, self).__init__(*args, **kwags)
-        self.slug = slugify(self.title)
-
-
-class Tag(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(140))
-    slug = db.Column(db.String(140), unique=True)
-
-    def __init__(self, *args, **kwags):
-        super(Tag, self).__init__(*args, **kwags)
-        self.slug = slugify(self.name)
-
-### Flask - security
-
-# user_datastore = SQLAlchemyUserDatastore(db, User, Role)
-# security = Security(app, user_datastore)
+    id = PrimaryKeyField(null=False)
+    title = CharField(max_length=35, null=False)
+    text = TextField(null=False)
+    author = CharField(max_length=35, null=False)
+    likes = TextField(null=True)
+    #tag = db.relationship('Tag', secondary=post_tag,
+                         # backref=db.backref('posts', lazy='dynamic'))
+    slug = CharField(max_length=35, null=False)

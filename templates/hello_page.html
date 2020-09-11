@@ -23,13 +23,13 @@
 		<div class="btn" id="reg">Регистрация</div>
 	</div>
 
-	<form id="form_auto" action="{{url_for('auto')}}" method="GET" class="form">Авторизация<br><br>
+	<form id="form_auto" action="{{url_for('enter', act='auto')}}" method="GET" class="form">Авторизация<br><br>
 		Введите свой логин: <input type="text" id="auto_login" name="login" class="input" value=""><br>
 		Введите свой пороль: <input type="text" id="auto_pass" name="password" class="input" value=""><br>
 		<button type="submit" class="btn" id="enter">Войти</button>
 	</form>
 	
-	<form id="form_reg" action="{{url_for('auto')}}" class="form" method="POST"><strong>Регистрация</strong><br><br>
+	<form id="form_reg" action="{{url_for('enter', act='reg')}}" class="form" method="POST"><strong>Регистрация</strong><br><br>
 		Придумайте себе логин: <input type="text" id="reg_login" name="login" class="input" value=""><br>
 		Придумайте себе пороль: <input type="text" id="reg_pass" name="password" class="input" value=""><br>
 		Введите своё имя: <input type="text" id="reg_name" name="name" class="input" value=""><br>
