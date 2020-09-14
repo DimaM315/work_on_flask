@@ -84,7 +84,7 @@ class UserController(BaseController):
         name = self.request.form['name'].strip()
         surname = self.request.form['surname'].strip()
 
-        if validation_data([login, password, name, surname]):
+        if valid_data_reg([login, password, name, surname]):
             u = User(name=name, password=password, login=login, surname=surname, contacts='')
             u.save()
         return redirect(url_for('index'))

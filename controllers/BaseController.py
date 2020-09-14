@@ -2,7 +2,7 @@ from flask import request, render_template, make_response, url_for, redirect, se
 from models import *
 
 
-def validation_data(args):
+def valid_data_reg(args):
     for i in args:
         if len(i) < 3:
             return False
@@ -25,6 +25,8 @@ def find_trigger_char(text_data):
 
 
 def slugify(title):
+	# title has checked on len
+	assert len(title) >= 6 
     pattern = r'[^\w+]'
     return re.sub(pattern, '-', title)
 
@@ -51,5 +53,6 @@ class BaseController:
 
     def __call(self, *args, **kwargs):
         raise NotImplementedError('_call')
+
 
 
